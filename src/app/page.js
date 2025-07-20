@@ -333,7 +333,13 @@ export default function Home() {
       </header> */}
       <header className="flex justify-between items-center px-6 py-4 bg-black text-white">
         <div className="flex items-center space-x-2">
-          <img src="/echoIcon2.png" alt="Echo Logo" className="h-6 w-6" />
+          <Image
+            src="/echoIcon2.png"
+            alt="Echo Logo"
+            width={450}
+            height={450}
+            className="h-6 w-6"
+          />
           <span className="text-xl font-semibold">Echo</span>
         </div>
         <nav className="hidden md:flex space-x-6 text-sm">
@@ -545,7 +551,9 @@ export default function Home() {
 
       {/* Roadmap Section */}
       <section className="bg-[#121212] text-white py-16 px-6">
-        <h2 className="text-2xl font-bold mb-8 text-center">What's Ahead</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center">
+          What&apos;s Ahead
+        </h2>
         <div className="max-w-3xl mx-auto space-y-10 border-l border-gray-700 pl-6">
           <div>
             <h3 className="text-lg font-semibold mb-1">✅ iOS Launch</h3>
@@ -588,8 +596,8 @@ export default function Home() {
       <section className="bg-[#1a1a1a] text-white py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">Your voice matters.</h2>
         <p className="text-lg text-gray-300 mb-8">
-          Echo isn't a course — it's a chance to say what you've always wanted
-          to. In your voice. In another language.
+          Echo isn&apos;t a course — it&apos;s a chance to say what you&apos;ve
+          always wanted to. In your voice. In another language.
         </p>
         {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
