@@ -1,399 +1,171 @@
-// "use client";
-
-// import Image from "next/image";
-
-// import { useState } from "react";
-
-// const faqs = [
-//   {
-//     question: "Is Echo like Duolingo?",
-//     answer:
-//       "Not really. Echo doesn't follow a forced curriculum — you choose what you want to say, and Echo builds from there.",
-//   },
-//   {
-//     question: "Do I need to know the language already?",
-//     answer:
-//       "Nope. Echo adapts to your level and helps you learn naturally through immersive, voice-led stories.",
-//   },
-//   {
-//     question: "Is it free?",
-//     answer:
-//       "Yes. You can get started for free. There are optional upgrades for deeper practice and advanced story modes.",
-//   },
-//   {
-//     question: "Will my progress transfer to Android?",
-//     answer:
-//       "Yep — as long as you create an account, your phrases and story progress will sync when Android launches.",
-//   },
-// ];
-
-// export default function Home() {
-//   const [openIndex, setOpenIndex] = useState(null);
-//   return (
-//     <main className="min-h-screen bg-[#1a1a1a] text-white">
-//       {/* Hero Section */}
-//       <section className="flex flex-col md:flex-row items-center justify-center px-6 py-20 gap-12">
-//         <div className="max-w-xl text-center md:text-left">
-//           <h1 className="text-5xl font-bold mb-4 leading-tight">
-//             What do you want to say?
-//           </h1>
-//           <p className="text-lg text-gray-300 mb-8">
-//             Echo lets you choose your own phrases — then learn them through real
-//             conversation.
-//           </p>
-//           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-//             <a
-//               href="https://apps.apple.com/us/app/echo-ai-language/id1674678298"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="bg-white text-black font-semibold px-6 py-3 rounded-full text-lg hover:bg-gray-200 transition"
-//             >
-//                Download on iOS
-//             </a>
-//             <a
-//               href="#waitlist"
-//               className="border border-white text-white font-semibold px-6 py-3 rounded-full text-lg hover:bg-white hover:text-black transition"
-//             >
-//               Join Android Waitlist
-//             </a>
-//           </div>
-//         </div>
-
-//         <div className="w-[280px] md:w-[320px]">
-//           <Image
-//             src="/heroscreenshot.png"
-//             alt="Echo Hero Screenshot"
-//             width={320}
-//             height={640}
-//             className="rounded-xl shadow-lg"
-//           />
-//         </div>
-//       </section>
-
-//       {/* How It Works Section */}
-//       <section className="bg-[#121212] text-white py-16 px-4 text-center">
-//         <h2 className="text-2xl font-bold mb-6">How Echo Works</h2>
-//         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-//           <div>
-//             <h3 className="font-semibold text-lg mb-2">
-//               1. Choose what you want to say
-//             </h3>
-//             <p className="text-gray-300">
-//               No forced lessons. You type what matters to you — Echo starts from
-//               there.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="font-semibold text-lg mb-2">
-//               2. Practice through story
-//             </h3>
-//             <p className="text-gray-300">
-//               Echo builds a fictional scene around your phrase. You speak,
-//               react, and feel it.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="font-semibold text-lg mb-2">3. Grow your voice</h3>
-//             <p className="text-gray-300">
-//               Get feedback. Unlock better versions. Learn the tone, not just the
-//               words.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Mystery Reward Section */}
-//       <section className="bg-[#0f0f0f] text-white py-20 px-6 text-center">
-//         <h2 className="text-3xl font-bold mb-4">
-//           The more you express, the louder the Echo responds.
-//         </h2>
-//         <p className="text-gray-300 text-lg max-w-xl mx-auto mb-6">
-//           Some voices unlock hidden paths. Others awaken… something rare.
-//         </p>
-//         <p className="text-sm text-gray-500 italic">
-//           Echo doesn’t forget. Keep going.
-//         </p>
-//       </section>
-
-//       {/* Screenshots Section */}
-//       <section className="py-16 px-4 bg-[#1a1a1a] text-center text-white">
-//         <h2 className="text-2xl font-bold mb-6">See Echo in Action</h2>
-//         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-//           <Image
-//             src="/images/echo-screen-1.png"
-//             alt="Echo Story Screenshot"
-//             width={280}
-//             height={600}
-//             className="rounded-xl shadow-lg"
-//           />
-//           <Image
-//             src="/images/echo-screen-2.png"
-//             alt="Echo Phrase Screenshot"
-//             width={280}
-//             height={600}
-//             className="rounded-xl shadow-lg"
-//           />
-//         </div>
-//       </section>
-
-//       {/* Android Waitlist Section */}
-//       <section
-//         id="waitlist"
-//         className="bg-[#121212] py-16 px-4 text-center text-white"
-//       >
-//         <h2 className="text-2xl font-bold mb-4">No Android yet?</h2>
-//         <p className="text-gray-300 mb-6">
-//           We're starting with iOS first. Android is coming soon — sign up to be
-//           notified when it's ready.
-//         </p>
-//         <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-//           <input
-//             type="email"
-//             placeholder="Enter your email"
-//             className="px-4 py-2 border border-gray-600 rounded-md w-full bg-[#1a1a1a] text-white placeholder-gray-400"
-//           />
-//           <button className="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-200 transition">
-//             Notify Me
-//           </button>
-//         </form>
-//       </section>
-
-//       {/* Testimonials Section */}
-//       <section className="bg-[#1a1a1a] text-white py-16 px-4 text-center">
-//         <h2 className="text-2xl font-bold mb-10">What Learners Are Saying</h2>
-//         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-//           <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-//             <p className="italic mb-4">
-//               “I used to memorize phrases I’d never say in real life. Echo let
-//               me say what I <strong>actually</strong> wanted — and I finally
-//               felt heard in another language.”
-//             </p>
-//             <p className="font-semibold text-sm text-gray-400">
-//               — Melina R., Seoul
-//             </p>
-//           </div>
-//           <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-//             <p className="italic mb-4">
-//               “I’ve tried Duolingo, Anki, and ChatGPT. Echo’s the first one that
-//               actually <strong>feels</strong> like a conversation. I’m speaking
-//               more, not just studying.”
-//             </p>
-//             <p className="font-semibold text-sm text-gray-400">
-//               — Jared T., Toronto
-//             </p>
-//           </div>
-//           <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-//             <p className="italic mb-4">
-//               “I didn’t think I could learn Japanese. But Echo made it feel like
-//               a story I was part of… not a test I had to pass.”
-//             </p>
-//             <p className="font-semibold text-sm text-gray-400">
-//               — Nara K., Singapore
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       <section className="bg-[#1a1a1a] text-white py-16 px-6">
-//         <h2 className="text-2xl font-bold mb-6 text-center">FAQ</h2>
-//         <div className="max-w-2xl mx-auto space-y-4">
-//           {faqs.map((faq, i) => (
-//             <div key={i} className="border-b border-gray-700 pb-4">
-//               <button
-//                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-//                 className="flex justify-between w-full items-center text-left font-semibold text-lg"
-//               >
-//                 <span>{faq.question}</span>
-//                 <span className="text-xl">{openIndex === i ? "−" : "+"}</span>
-//               </button>
-//               {openIndex === i && (
-//                 <p className="text-gray-400 mt-2">{faq.answer}</p>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-//       </section>
-
-//       {/* Roadmap Section */}
-//       <section className="bg-[#121212] text-white py-16 px-6">
-//         <h2 className="text-2xl font-bold mb-8 text-center">What's Ahead</h2>
-//         <div className="max-w-3xl mx-auto space-y-10 border-l border-gray-700 pl-6">
-//           <div>
-//             <h3 className="text-lg font-semibold mb-1">✅ iOS Launch</h3>
-//             <p className="text-gray-400">
-//               The first public version of Echo is live on the App Store — start
-//               learning your voice now.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-lg font-semibold mb-1">🧪 Story Evolution</h3>
-//             <p className="text-gray-400">
-//               More characters. Deeper emotional arcs. Dynamic turns that
-//               remember your choices.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-lg font-semibold mb-1">🟡 Android Release</h3>
-//             <p className="text-gray-400">
-//               Coming soon. Join the waitlist to be notified the moment it drops.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-lg font-semibold mb-1">🔒 Private Echolets</h3>
-//             <p className="text-gray-400">
-//               Some users may begin to receive hidden Echolets. These are
-//               symbolic — and possibly more.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-lg font-semibold mb-1">🎁 Community Rewards</h3>
-//             <p className="text-gray-400">
-//               The more you express, the more Echo responds. Power users may
-//               unlock something... surprising.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Final CTA Section */}
-//       <section className="bg-[#1a1a1a] text-white py-20 px-6 text-center">
-//         <h2 className="text-3xl font-bold mb-4">Your voice matters.</h2>
-//         <p className="text-lg text-gray-300 mb-8">
-//           Echo isn't a course — it's a chance to say what you've always wanted
-//           to. In your voice. In another language.
-//         </p>
-//         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-//           <a
-//             href="https://apps.apple.com/us/app/echo-ai-language/id1674678298"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//             className="bg-white text-black font-semibold px-6 py-3 rounded-full text-lg hover:bg-gray-200 transition"
-//           >
-//              Download on iOS
-//           </a>
-//           <a
-//             href="#waitlist"
-//             className="border border-white text-white font-semibold px-6 py-3 rounded-full text-lg hover:bg-white hover:text-black transition"
-//           >
-//             Join Android Waitlist
-//           </a>
-//         </div>
-//       </section>
-
-//       {/* Footer */}
-//       <footer className="bg-[#1a1a1a] py-8 text-center text-gray-400 text-sm">
-//         <p>&copy; {new Date().getFullYear()} Echo. All rights reserved.</p>
-//         <p>Made with ❤️ for language learners who want to say what matters.</p>
-//       </footer>
-//     </main>
-//   );
-// }
-
 "use client";
 
 import Image from "next/image";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const faqs = [
   {
-    question: "Is Echo like Duolingo?",
+    question: "Is Ahem a Duolingo alternative?",
     answer:
-      "Not really. Echo doesn't follow a forced curriculum — you choose what you want to say, and Echo builds from there.",
+      "Yes, it’s an alternative to Duolingo, but we take it a mile further. Ahem puts the power in your hands, letting you forge your own journey of what to learn — as if you’re dropped in a foreign country, mastering it through real interactions.",
   },
   {
     question: "Do I need to know the language already?",
     answer:
-      "Nope. Echo adapts to your level and helps you learn naturally through immersive, voice-led stories.",
+      "No. Simply jump-in, shape your language—Ahem adapts to keep it real.",
   },
   {
     question: "Is it free?",
     answer:
-      "Yes. You can get started for free. There are optional upgrades for deeper practice and advanced story modes.",
+      "Yes, starts free. Unlock extras and more advanced modes with premium (no $AHEM tie).", // Fixed typo
   },
   {
-    question: "Will my progress transfer to Android?",
+    question: "Is there a token?",
+    answer: "$AHEM fuels a movement—it’s apart from Ahem’s core.",
+  },
+  {
+    question: "What are Ahems?",
+    answer: "Ahems are your points you earn throughout in-app interactions.",
+  },
+  {
+    question: "What's agentic story mode?",
     answer:
-      "Yep — as long as you create an account, your phrases and story progress will sync when Android launches.",
+      "Our standout feature: AI characters adapt to your words, driving dynamic stories and guiding your language mastery as you unlock their true agendas - just like in real life.",
+  },
+  {
+    question: "What sets Ahem apart from traditional learning?",
+    answer:
+      "Traditional systems demand grades and tests — we ditch that. Ahem lets you forge your path, mastering language through stories and stakes, not checklists.",
   },
 ];
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [countdown, setCountdown] = useState({
+    days: Math.floor(Math.random() * 24) + 7,
+    hours: Math.floor(Math.random() * 24),
+    minutes: Math.floor(Math.random() * 60),
+    seconds: Math.floor(Math.random() * 60),
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        let { days, hours, minutes, seconds } = prev;
+        seconds -= 1;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes -= 1;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          hours -= 1;
+        }
+        if (hours < 0) {
+          hours = 23;
+          days -= 1;
+        }
+        if (days < 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        return { days, hours, minutes, seconds };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-[#1a1a1a] text-white">
-      {/* <header className="absolute top-6 left-6 z-50">
-        <Image
-          src="/EchoIcon2.png"
-          alt="Echo Logo"
-          width={40}
-          height={40}
-          className="w-10 h-10"
-        />
-      </header> */}
-      <header className="flex justify-between items-center px-6 py-4 bg-black text-white">
+    <main className="min-h-screen bg-[#1B1411] text-[#F6EDE6]">
+      {/* Header */}
+      <header className="flex justify-between items-center px-4 py-4 bg-[#1B1411]">
         <div className="flex items-center space-x-2">
           <Image
             src="/echoIcon2.png"
-            alt="Echo Logo"
+            alt="Ahem Logo"
             width={450}
             height={450}
             className="h-6 w-6"
           />
-          <span className="text-xl font-semibold">Echo</span>
+          <span className="text-xl font-semibold">Ahem</span>
         </div>
-        <nav className="hidden md:flex space-x-6 text-sm">
-          <a href="#features" className="hover:text-gray-300">
+        <nav className="hidden md:flex space-x-6 text-sm text-[#CBB6A7]">
+          <a href="#features" className="hover:text-[#F6EDE6]">
             Features
           </a>
-          <a href="#faq" className="hover:text-gray-300">
+          <a href="#faq" className="hover:text-[#F6EDE6]">
             FAQ
           </a>
-          {/* <a
-            href="#download"
-            className="px-4 py-2 bg-yellow-500 rounded text-black font-medium hover:bg-yellow-400"
+          <a
+            href="https://pump.fun"
+            target="_blank"
+            className="hover:text-[#F6EDE6]"
           >
-            Get the App
-          </a> */}
+            Back to Pump.fun
+          </a>
+          <a
+            href="https://x.com"
+            target="_blank"
+            className="hover:text-[#F6EDE6]"
+          >
+            X
+          </a>
         </nav>
       </header>
-      {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-center px-6 py-20 gap-12">
+
+      {/* Hero */}
+      <section className="flex flex-col md:flex-row items-center justify-center px-2 py-20 gap-12">
         <div className="max-w-xl text-center md:text-left">
+          <div className="mt-6 text-center">
+            <div
+              className="text-[#FFC44D] font-semibold animate-pulse"
+              style={{ animation: "pulse 2s infinite" }}
+            >
+              {countdown.days}d {countdown.hours}h {countdown.minutes}m{" "}
+              {countdown.seconds}s
+            </div>
+            <style jsx>{`
+              @keyframes pulse {
+                0% {
+                  opacity: 1;
+                }
+                50% {
+                  opacity: 0.6;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
+            `}</style>
+          </div>
           <h1 className="text-5xl font-bold mb-4 leading-tight">
-            What do you want to say?
+            Shape Your Words, Own the Story.
           </h1>
-          <p className="text-lg text-gray-300 mb-8">
-            Echo lets you choose your own phrases — then learn them through real
-            conversation.
+          <p className="text-lg text-[#CBB6A7] mb-8">
+            Pick your words, spark agentic AI stories. Characters react and
+            adapt in the language you’re mastering, making every choice
+            urgent—and every lesson stick.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <div className="bg-gray-800 text-white font-semibold px-6 py-3 rounded-full text-lg opacity-70 cursor-default">
-               iOS & Android — Coming Soon
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <div className="bg-[#3A2620] text-[#F6EDE6] font-semibold px-6 py-3 rounded-full text-lg opacity-80 cursor-default">
+                iOS and Android Coming Soon
+              </div>
+            </div>
+            <div className="mt-6 text-sm text-[#CBB6A7]">
+              <p>
+                Be Among the first subscribers for a Future Founders NFT!
+                {/* <a
+                href="/paywall"
+                className="underline underline-offset-4 hover:text-[#F6EDE6]"
+              >
+                Learn more (in-app only, non-tradable)
+              </a> */}
+              </p>
             </div>
           </div>
-          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
-              href="https://apps.apple.com/us/app/echo-ai-language/id1674678298"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-black font-semibold px-6 py-3 rounded-full text-lg hover:bg-gray-200 transition"
-            >
-               Download on iOS
-            </a>
-            <a
-              href="#waitlist"
-              className="border border-white text-white font-semibold px-6 py-3 rounded-full text-lg hover:bg-white hover:text-black transition"
-            >
-              Join Android Waitlist
-            </a>
-          </div> */}
         </div>
-
         <div className="w-[280px] md:w-[320px]">
           <Image
             src="/heroImage.png"
-            alt="Echo Hero Screenshot"
+            alt="Ahem Hero Screenshot"
             width={320}
             height={640}
             className="rounded-xl shadow-lg"
@@ -401,139 +173,113 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="bg-[#121212] text-white py-16 px-4 text-center">
+      {/* How It Works */}
+      <section className="bg-[#3A2620] text-[#F6EDE6] py-16 px-4 text-center">
         <h2 id="features" className="text-2xl font-bold mb-6">
-          How Echo Works
+          How Ahem Works
         </h2>
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           <div>
             <h3 className="font-semibold text-lg mb-2">
-              1. Choose what you want to say
+              1. Choose your words and path
             </h3>
-            <p className="text-gray-300">
-              No forced lessons. You type what matters to you — Echo starts from
-              there.
+            <p className="text-[#CBB6A7]">
+              Choose the words you need — no forced lessons. Ahem transforms
+              them into natural, modern phrases, ready for your story.
             </p>
           </div>
           <div>
             <h3 className="font-semibold text-lg mb-2">
-              2. Practice through story
+              2. Reinforce with Quizzes
             </h3>
-            <p className="text-gray-300">
-              Echo builds a fictional scene around your phrase. You speak,
-              react, and feel it.
+            <p className="text-[#CBB6A7]">
+              Save 5 phrases, unlock a custom quiz. Test yourself, sharpen your
+              skills, and feel the rush to get it right.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-lg mb-2">3. Grow your voice</h3>
-            <p className="text-gray-300">
-              Get feedback. Unlock better versions. Learn the tone, not just the
-              words.
+            <h3 className="font-semibold text-lg mb-2">
+              3. Shape Stories, Build Connections
+            </h3>
+            <p className="text-[#CBB6A7]">
+              Jump into stories with AI characters who use your words—or push
+              you to. Bond through quests, earn points, and uncover their world
+              as you master the language.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg mb-2">
+              4. Review and Rank Up
+            </h3>
+            <p className="text-[#CBB6A7]">
+              Revisit saved phrases anytime, quiz at will, and climb the ranks
+              with every win.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Mystery Reward Section */}
-      <section className="bg-[#0f0f0f] text-white py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          The more you express, the louder the Echo responds.
-        </h2>
-        <p className="text-gray-300 text-lg max-w-xl mx-auto mb-6">
-          Some voices unlock hidden paths. Others awaken… something rare.
-        </p>
-        <p className="text-sm text-gray-500 italic">
-          Echo doesn’t forget. Keep going.
-        </p>
+      {/* Proof strip */}
+      <section className="bg-[#2B1E19] text-[#F6EDE6] py-12 px-4 text-center">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="border border-[#583428]/30 rounded-lg p-5">
+            <div className="text-[#FFC44D] font-semibold">
+              Your Words Unleash Stories
+            </div>
+            <div className="text-sm text-[#CBB6A7] mt-2">
+              Immersive tales coming soon. Your words shape the adventure.
+            </div>
+          </div>
+          <div className="border border-[#583428]/30 rounded-lg p-5">
+            <div className="text-[#FFC44D] font-semibold">Forge Your Path</div>
+            <div className="text-sm text-[#CBB6A7] mt-2">
+              Carve your own path.
+            </div>
+          </div>
+          <div className="border border-[#583428]/30 rounded-lg p-5">
+            <div className="text-[#FFC44D] font-semibold">
+              $AHEM - Ignite the Movement
+            </div>
+            <div className="text-sm text-[#CBB6A7] mt-2">
+              Reject old systems. Shape a new learning era.
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Screenshots Section */}
-      <section className="py-16 px-4 bg-[#1a1a1a] text-center text-white">
-        <h2 className="text-2xl font-bold mb-6">See Echo in Action</h2>
+      {/* Screenshots */}
+      <section className="py-16 px-4 bg-[#1B1411] text-center">
+        <h2 className="text-2xl font-bold mb-6">See Ahem in action</h2>
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <Image
-            src="/howitworks1.png"
-            alt="Echo Story Screenshot"
-            width={280}
-            height={600}
-            className="rounded-xl shadow-lg"
-          />
-          <Image
-            src="/howitworks2.png"
-            alt="Echo Phrase Screenshot"
-            width={280}
-            height={600}
-            className="rounded-xl shadow-lg"
-          />
+          <div>
+            <Image
+              src="/howitworks1.png"
+              alt="Story scene with adaptive AI"
+              width={280}
+              height={600}
+              className="rounded-xl shadow-lg"
+            />
+          </div>
+          <div>
+            <Image
+              src="/howitworks2.png"
+              alt="Phrase tools with AI characters shaping stories"
+              width={280}
+              height={600}
+              className="rounded-xl shadow-lg"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Android Waitlist Section */}
-      {/* <section
-        id="waitlist"
-        className="bg-[#121212] py-16 px-4 text-center text-white"
-      >
-        <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-        <p className="text-gray-300 mb-6">
-          We're preparing for our launch soon — sign up to be notified when it's
-          ready.
-        </p>
-        <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="px-4 py-2 border border-gray-600 rounded-md w-full bg-[#1a1a1a] text-white placeholder-gray-400"
-          />
-          <button className="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-200 transition">
-            Notify Me
-          </button>
-        </form>
-      </section> */}
-
-      {/* Testimonials Section */}
-      {/* <section className="bg-[#1a1a1a] text-white py-16 px-4 text-center">
-        <h2 className="text-2xl font-bold mb-10">What Learners Are Saying</h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-          <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-            <p className="italic mb-4">
-              “I used to memorize phrases I’d never say in real life. Echo let
-              me say what I <strong>actually</strong> wanted — and I finally
-              felt heard in another language.”
-            </p>
-            <p className="font-semibold text-sm text-gray-400">
-              — Melina R., Seoul
-            </p>
-          </div>
-          <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-            <p className="italic mb-4">
-              “I’ve tried Duolingo, Anki, and ChatGPT. Echo’s the first one that
-              actually <strong>feels</strong> like a conversation. I’m speaking
-              more, not just studying.”
-            </p>
-            <p className="font-semibold text-sm text-gray-400">
-              — Jared T., Toronto
-            </p>
-          </div>
-          <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-md">
-            <p className="italic mb-4">
-              “I didn’t think I could learn Japanese. But Echo made it feel like
-              a story I was part of… not a test I had to pass.”
-            </p>
-            <p className="font-semibold text-sm text-gray-400">
-              — Nara K., Singapore
-            </p>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="bg-[#1a1a1a] text-white py-16 px-6">
+      {/* FAQ */}
+      <section className="bg-[#1B1411] py-16 px-4">
         <h2 id="faq" className="text-2xl font-bold mb-6 text-center">
           FAQ
         </h2>
         <div className="max-w-2xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-gray-700 pb-4">
+            <div key={i} className="border-b border-[#583428]/40 pb-4">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="flex justify-between w-full items-center text-left font-semibold text-lg"
@@ -542,85 +288,79 @@ export default function Home() {
                 <span className="text-xl">{openIndex === i ? "−" : "+"}</span>
               </button>
               {openIndex === i && (
-                <p className="text-gray-400 mt-2">{faq.answer}</p>
+                <p className="text-[#CBB6A7] mt-2">{faq.answer}</p>
               )}
             </div>
           ))}
         </div>
       </section>
 
-      {/* Roadmap Section */}
-      <section className="bg-[#121212] text-white py-16 px-6">
-        <h2 className="text-2xl font-bold mb-8 text-center">
-          What&apos;s Ahead
-        </h2>
-        <div className="max-w-3xl mx-auto space-y-10 border-l border-gray-700 pl-6">
+      {/* Roadmap */}
+      <section className="bg-[#3A2620] py-16 px-2">
+        <h2 className="text-2xl font-bold mb-8 text-center">What’s Ahead</h2>
+        <div className="max-w-3xl mx-auto space-y-10 border-l border-[#583428]/40 pl-6">
           <div>
-            <h3 className="text-lg font-semibold mb-1">✅ iOS Launch</h3>
-            <p className="text-gray-400">
-              The first public version of Echo is live on the App Store — start
-              learning your voice now.
+            <h3 className="text-lg font-semibold mb-1">✅ iOS live</h3>
+            <p className="text-[#CBB6A7]">
+              First public build on the App Store.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-1">🧪 Story Evolution</h3>
-            <p className="text-gray-400">
-              More characters. Deeper emotional arcs. Dynamic turns that
-              remember your choices.
-            </p>
-          </div>
-          {/* <div>
-            <h3 className="text-lg font-semibold mb-1">🟡 App Release Soon</h3>
-            <p className="text-gray-400">
-              Coming soon. Join the waitlist to be notified the moment it drops.
-            </p>
-          </div> */}
-          <div>
-            <h3 className="text-lg font-semibold mb-1">🔒 Private Echolets</h3>
-            <p className="text-gray-400">
-              Some users may begin to receive hidden Echolets. These are
-              symbolic — and possibly more.
+            <h3 className="text-lg font-semibold mb-1">🧪 Story evolution</h3>
+            <p className="text-[#CBB6A7]">
+              Continued stories with more characters for each language, deeper
+              arcs, and scenes that remember your choices.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-1">🎁 Community Rewards</h3>
-            <p className="text-gray-400">
-              The more you express, the more Echo responds. Power users may
-              unlock something... surprising.
+            <h3 className="text-lg font-semibold mb-1">
+              🛠️ Community-voted features
+            </h3>
+            <p className="text-[#CBB6A7]">
+              New languages and quest-like stories based on your feedback from X
+              and pump.fun.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-1">📜 Season milestones</h3>
+            <p className="text-[#CBB6A7]">
+              Unlock new ranks and story chapters with seasonal goals, shaped by
+              your input and leaderboard progress.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="bg-[#1a1a1a] text-white py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4">Your voice matters.</h2>
-        <p className="text-lg text-gray-300 mb-8">
-          Echo isn&apos;t a course — it&apos;s a chance to say what you&apos;ve
-          always wanted to. In your voice. In another language.
+      {/* Final */}
+      <section className="bg-[#1B1411] py-20 px-4 text-center">
+        <h2 className="text-3xl font-bold mb-4">Your Words, Your World.</h2>
+        <p className="text-lg text-[#CBB6A7] mb-8">
+          Ditch fixed curriculums for AI-powered quests in your language
+          journey. Learn language through what motivates you.
         </p>
-        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="text-sm text-[#CBB6A7]">
           <a
-            href="https://apps.apple.com/us/app/echo-ai-language/id1674678298"
+            href="https://pump.fun"
             target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black font-semibold px-6 py-3 rounded-full text-lg hover:bg-gray-200 transition"
+            className="underline underline-offset-4 hover:text-[#F6EDE6]"
           >
-             Join iOS Waitlist
-          </a>
+            Dive deeper on Pump.fun
+          </a>{" "}
+          ·{" "}
           <a
-            href="#waitlist"
-            className="border border-white text-white font-semibold px-6 py-3 rounded-full text-lg hover:bg-white hover:text-black transition"
+            href="https://x.com"
+            target="_blank"
+            className="underline underline-offset-4 hover:text-[#F6EDE6]"
           >
-            Join Android Waitlist
+            Follow our $AHEM community on X
           </a>
-        </div> */}
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1a1a1a] py-8 text-center text-gray-400 text-sm">
-        <p>&copy; {new Date().getFullYear()} Echo. All rights reserved.</p>
-        <p>Made with ❤️ for language learners who want to say what matters.</p>
+      <footer className="bg-[#1B1411] py-8 px-4 text-center text-[#CBB6A7] text-sm">
+        <p>&copy; {new Date().getFullYear()} Ahem. All rights reserved.</p>
+        <p>Made for people who want to say what matters.</p>
       </footer>
     </main>
   );
