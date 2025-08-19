@@ -79,35 +79,35 @@ export default function Home() {
   const [openIndex, setOpenIndex] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [countdown, setCountdown] = useState({
-    days: Math.floor(Math.random() * 24) + 7,
-    hours: Math.floor(Math.random() * 24),
-    minutes: Math.floor(Math.random() * 60),
-    seconds: Math.floor(Math.random() * 60),
+    days: 25,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   });
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        let { days, hours, minutes, seconds } = prev;
-        seconds -= 1;
-        if (seconds < 0) {
-          seconds = 59;
-          minutes -= 1;
-        }
-        if (minutes < 0) {
-          minutes = 59;
-          hours -= 1;
-        }
-        if (hours < 0) {
-          hours = 23;
-          days -= 1;
-        }
-        if (days < 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        return { days, hours, minutes, seconds };
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  // useEffect(() => {
+  //   const targetDate = new Date("2025-09-12T00:00:00Z"); // 25 days from Aug 18
+
+  //   const timer = setInterval(() => {
+  //     const now = new Date();
+  //     const distance = targetDate - now;
+
+  //     if (distance <= 0) {
+  //       setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  //       clearInterval(timer);
+  //       return;
+  //     }
+
+  //     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  //     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  //     const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  //     const seconds = Math.floor((distance / 1000) % 60);
+
+  //     setCountdown({ days, hours, minutes, seconds });
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <main className="min-h-screen bg-[#1B1411] text-[#F6EDE6]">
@@ -154,7 +154,7 @@ export default function Home() {
         {/* LEFT TEXT BLOCK */}
         <div className="flex-1 text-center md:text-left">
           {/* COUNTDOWN */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <div
               className="text-[#FFC44D] font-semibold animate-pulse"
               style={{ animation: "pulse 2s infinite" }}
@@ -175,7 +175,7 @@ export default function Home() {
                 }
               }
             `}</style>
-          </div>
+          </div> */}
 
           <h1 className="text-5xl font-bold mb-6 leading-tight">
             Shape Your Words, Own the Story.
