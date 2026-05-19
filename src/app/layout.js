@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Ahem - AI Language Learning",
+  title: "Glasswake LLC - AI Product Planning, Career Positioning, and AHEM",
   description:
-    "Learn language through what you actually want to say and what matters to you.",
+    "Glasswake LLC helps builders plan AI products, use AI coding tools better, and explain technical work more clearly. It is also the studio behind AHEM.",
 };
 
 export default function RootLayout({ children }) {

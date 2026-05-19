@@ -1,436 +1,1044 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  BookOpen,
+  BriefcaseBusiness,
+  CheckCircle2,
+  Code2,
+  FileText,
+  Layers3,
+  MessageCircle,
+  Sparkles,
+  Volume2,
+} from "lucide-react";
 
-// const faqs = [
-//   {
-//     question: "Is Ahem a Duolingo alternative?",
-//     answer:
-//       "Yes, it’s an alternative to Duolingo, but we take it a mile further. Ahem puts the power in your hands, letting you forge your own journey of what to learn — as if you’re dropped in a foreign country, mastering it through real interactions.",
-//   },
-//   {
-//     question: "Do I need to know the language already?",
-//     answer:
-//       "No. Simply jump-in, shape your language—Ahem adapts to keep it real.",
-//   },
-//   {
-//     question: "Is it free?",
-//     answer:
-//       "Yes, starts free. Unlock extras and more advanced modes with premium (no $AHEM tie).", // Fixed typo
-//   },
-//   {
-//     question: "Is there a token?",
-//     answer: "$AHEM fuels a movement—it’s apart from Ahem’s core.",
-//   },
-//   {
-//     question: "What are Ahems?",
-//     answer: "Ahems are your points you earn throughout in-app interactions.",
-//   },
-//   {
-//     question: "What's agentic story mode?",
-//     answer:
-//       "Our standout feature: AI characters adapt to your words, driving dynamic stories and guiding your language mastery as you unlock their true agendas - just like in real life.",
-//   },
-//   {
-//     question: "What sets Ahem apart from traditional learning?",
-//     answer:
-//       "Traditional systems demand grades and tests — we ditch that. Ahem lets you forge your path, mastering language through stories and stakes, not checklists.",
-//   },
-// ];
+const ahemHref =
+  "mailto:hello@glasswake.com?subject=AHEM%20Starter%20Pass%20request";
+const productSessionsHref = "#ai-product-sessions";
+const bookingHref =
+  "https://app.squareup.com/appointments/book/32fjune8r2bjdv/LVHNAWGE4GYV5/start";
+const resumeHref = bookingHref;
 
-const faqs = [
+const ahemFeatures = [
+  "Adaptive story conversations",
+  "Phrase reveals",
+  "Saved phrase review",
+  "Text-to-speech listening",
+  "Smart phrase suggestions",
+  "Support for up to 4 languages",
+];
+
+const ahemAssetCards = [
   {
-    question: "Is Echo a Duolingo alternative?",
-    answer:
-      "Yes, it’s an alternative to Duolingo, but we take it a mile further. Echo puts the power in your hands, letting you forge your own journey of what to learn — as if you’re dropped in a foreign country, mastering it through real interactions.",
+    title: "Story conversation",
+    note: "Show an adaptive story conversation screen.",
+    icon: MessageCircle,
   },
   {
-    question: "Do I need to know the language already?",
-    answer:
-      "No. Simply jump in, shape your language — Echo adapts to keep it real.",
+    title: "Phrase reveal",
+    note: "Show useful phrases appearing in context.",
+    icon: BookOpen,
   },
   {
-    question: "Is it free?",
-    answer:
-      "Yes, starts free. Unlock extras and more advanced modes with premium (no $ECHO tie).",
+    title: "Saved phrase review",
+    note: "Show saved phrases or review flow.",
+    icon: FileText,
   },
   {
-    question: "Is there a token?",
-    answer: "$ECHO fuels a movement — it’s apart from Echo’s core.",
+    title: "Text-to-speech listening",
+    note: "Show listening or playback inside AHEM.",
+    icon: Volume2,
+  },
+];
+
+const memoryLoop = [
+  "Choose",
+  "Respond",
+  "Make a mistake",
+  "Reveal",
+  "Save",
+  "Remember",
+];
+
+const buildChips = [
+  "Live iOS + Android app",
+  "Multi-step LLM pipeline",
+  "Prompt orchestration",
+  "Subscription systems",
+  "AI-generated scenes",
+  "Text-to-speech listening",
+  "Cost guardrails",
+  "Full-stack product build",
+];
+
+const serviceCards = [
+  {
+    id: "ai-product",
+    title: "AI Product Planning & Builder Workflow",
+    headline: "Build with AI tools without turning your product into a mess.",
+    audience:
+      "For indie builders, vibe coders, founders, and small teams using tools like Codex, Cursor, Lovable, Replit, Base44, Bolt, or Claude Code.",
+    body: [
+      "This service helps you plan the product before prompting the build. We map the user flow, break features into smaller steps, decide what should be AI-driven versus normal code, and turn vague ideas into clearer instructions your AI coding tools can actually follow.",
+      'The goal is not to replace your AI tools or fix your whole app for you. The goal is to help you use them better: cleaner prompts, better feature breakdowns, clearer data flow, stronger modularization, and fewer "why did it change everything?" moments.',
+    ],
+    badge: "Three session options",
+    href: productSessionsHref,
+    cta: "View Session Options",
+    support:
+      "This is the umbrella service. Pick one of the three focused AI product sessions below.",
+    icon: Code2,
+    visual: "system",
   },
   {
-    question: "What are Echolets?",
-    answer: "Echolets are the points you earn throughout in-app interactions.",
+    id: "career-review",
+    title: "Tech Resume & AI Career Positioning Rewrite - 1 Page",
+    headline: "Make your technical work easier to understand.",
+    audience:
+      "For software engineers, AI builders, product engineers, full-stack developers, and project-based candidates whose resume does not clearly show what they can do.",
+    body: [
+      "This is an async email-based rewrite for one resume page. You send your resume, target roles, and relevant project context; Glasswake rewrites the page so your technical work is clearer and easier to scan.",
+      "This is not just grammar cleanup. The goal is to help you explain what you built, why it mattered, what decisions you made, and why recruiters, founders, or hiring teams should care.",
+    ],
+    price: "$299",
+    serviceType: "Async email-based rewrite",
+    listLabel: "What this can include",
+    bullets: [
+      "Resume structure",
+      "Project storytelling",
+      "AI/product positioning",
+      "Technical credibility",
+      "Portfolio explanation",
+      "Interview narrative",
+      "Role targeting",
+      "Builder-style experience",
+    ],
+    href: resumeHref,
+    cta: "Start Resume Rewrite",
+    support:
+      "Best for software, AI product, full-stack, startup, or applied-AI roles. Delivery is async by email.",
+    icon: BriefcaseBusiness,
+    visual: "document",
+  },
+];
+
+const productSessionTypes = [
+  {
+    title: "AI Product Planning Session - 60 Minutes",
+    subtitle: "Turn a rough idea into a clear product plan.",
+    price: "$249",
+    serviceType: "Live remote session",
+    forText:
+      "Early-stage ideas, messy concepts, or builders who know they want to make something with AI but do not know where to start.",
+    description:
+      "We clarify what the product is, who it is for, what the core user loop should be, where AI actually belongs, and what the first usable version should include.",
+    goodFor: [
+      "I have an AI app idea but do not know how to plan it.",
+      "I know the feature I want, but not the product flow.",
+      "I need help deciding what the MVP should be.",
+      "I want to avoid building too many random features.",
+    ],
+    cover: [
+      "Target user",
+      "Core product loop",
+      "MVP scope",
+      "AI feature planning",
+      "User flow mapping",
+      "What to build first",
+      "What to leave out",
+    ],
+    href: bookingHref,
+    cta: "Plan My AI Product",
   },
   {
-    question: "What's agentic story mode?",
-    answer:
-      "Our standout feature: AI characters adapt to your words, driving dynamic stories and guiding your language mastery as you unlock their true agendas — just like in real life.",
+    title: "AI Integration Review - 60 Minutes",
+    subtitle: "Figure out how AI should fit into your app.",
+    price: "$299",
+    serviceType: "Live remote session",
+    forText:
+      "Existing apps, prototypes, or products where the builder wants to add AI or clean up an AI feature.",
+    description:
+      "We review how AI fits into the product and look for cleaner ways to structure prompts, responses, backend flow, memory/context, retries, cost, and reusable logic.",
+    goodFor: [
+      "I already built something, but the AI flow feels messy.",
+      "I do not know what should be prompt-based versus normal code.",
+      "My AI feature works, but it feels fragile.",
+      "I need a better structure before adding more features.",
+    ],
+    cover: [
+      "Prompt and response structure",
+      "Backend/API flow",
+      "Memory and context handling",
+      "Reusable AI workflows",
+      "Caching, retries, and fallbacks",
+      "Cost guardrails",
+      "Premium feature planning",
+      "Product UX around AI responses",
+    ],
+    href: bookingHref,
+    cta: "Review My AI Integration",
   },
   {
-    question: "What sets Echo apart from traditional learning?",
-    answer:
-      "Traditional systems demand grades and tests — we ditch that. Echo lets you forge your path, mastering language through stories and stakes, not checklists.",
+    title: "AI Builder Workflow Session - 60 Minutes",
+    subtitle: "Use AI coding tools with clearer instructions.",
+    price: "$199",
+    serviceType: "Live remote session",
+    forText:
+      "Vibe coders and indie builders using tools like Codex, Cursor, Lovable, Replit, Base44, Bolt, Claude Code, or similar AI coding tools.",
+    description:
+      "This session focuses on how you are asking AI tools to build. We break your feature into smaller instructions, clarify the expected data flow, define what files/modules should change, and create better prompts so the tool is less likely to break unrelated parts of the app.",
+    goodFor: [
+      "Codex/Cursor keeps changing too much.",
+      "My prompts are too vague.",
+      "I do not know how to split this feature into safe steps.",
+      "My app is getting messy because I keep asking AI for big changes.",
+      "I want fewer errors when using AI coding tools.",
+    ],
+    cover: [
+      "Prompting strategy for AI coding tools",
+      "Feature breakdown",
+      "Data flow clarification",
+      "Component/module planning",
+      "Safer implementation steps",
+      "What files should change",
+      "What to ask the tool next",
+      "How to review AI-generated changes",
+    ],
+    href: bookingHref,
+    cta: "Improve My Build Prompts",
+  },
+];
+
+const finalPaths = [
+  {
+    title: "I am building with AI.",
+    copy: "Plan the product loop, structure the AI integration, or improve how you prompt AI coding tools.",
+    href: productSessionsHref,
+    cta: "Choose AI Product Session",
+  },
+  {
+    title: "I need to explain my technical work better.",
+    copy: "Rewrite one resume page so your projects and technical story are clearer.",
+    href: resumeHref,
+    cta: "Start Resume Rewrite",
+  },
+  {
+    title: "I want to try AHEM.",
+    copy: "Practice real phrases through adaptive language stories.",
+    href: ahemHref,
+    cta: "Try AHEM Starter Pass",
   },
 ];
 
 export default function Home() {
-  const [openIndex, setOpenIndex] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [countdown, setCountdown] = useState({
-    days: 25,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  // useEffect(() => {
-  //   const targetDate = new Date("2025-09-12T00:00:00Z"); // 25 days from Aug 18
-
-  //   const timer = setInterval(() => {
-  //     const now = new Date();
-  //     const distance = targetDate - now;
-
-  //     if (distance <= 0) {
-  //       setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  //       clearInterval(timer);
-  //       return;
-  //     }
-
-  //     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  //     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  //     const minutes = Math.floor((distance / (1000 * 60)) % 60);
-  //     const seconds = Math.floor((distance / 1000) % 60);
-
-  //     setCountdown({ days, hours, minutes, seconds });
-  //   }, 1000);
-
-  //   return () => clearInterval(timer);
-  // }, []);
-
   return (
-    <main className="min-h-screen bg-[#1B1411] text-[#F6EDE6]">
-      {/* Header */}
-      <header className="flex justify-between items-center px-4 py-4 bg-[#1B1411]">
-        <div className="flex items-center space-x-2">
-          <Image
-            src="/echoIcon2.png"
-            alt="Ahem Logo"
-            width={450}
-            height={450}
-            className="h-6 w-6"
-          />
-          {/* <span className="text-xl font-semibold">Ahem</span> */}
-          <span className="text-xl font-semibold">Echo</span>
-        </div>
-        <nav className="hidden md:flex space-x-6 text-sm text-[#CBB6A7]">
-          <a href="#features" className="hover:text-[#F6EDE6]">
-            Features
+    <main className="min-h-screen overflow-hidden bg-[#0F0D0B] text-[#FFF4DF]">
+      <Header />
+      <HeroSection />
+      <ServicesSection />
+      <AhemShowcase />
+      <WhyItWorks />
+      <BuiltByGlasswakeSection />
+      <FinalCta />
+      <Footer />
+    </main>
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-[#FFF4DF]/10 bg-[#0F0D0B]/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="#top" className="flex items-center gap-3">
+          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-[#FFF4DF] text-sm font-black tracking-tight text-[#1A120D] shadow-[0_0_28px_rgba(244,183,64,0.22)]">
+            GW
+          </span>
+          <span>
+            <span className="block text-base font-semibold text-[#FFF4DF]">
+              Glasswake LLC
+            </span>
+            <span className="block text-xs text-[#B8AA9A]">
+              Applied-AI product studio
+            </span>
+          </span>
+        </a>
+
+        <nav className="hidden items-center gap-6 text-sm font-medium text-[#B8AA9A] md:flex">
+          <a href="#ai-product" className="transition hover:text-[#FFF4DF]">
+            AI Product
           </a>
-          <a href="#faq" className="hover:text-[#F6EDE6]">
-            FAQ
+          <a href="#career-review" className="transition hover:text-[#FFF4DF]">
+            Resume Rewrite
+          </a>
+          <a href="#ahem" className="transition hover:text-[#FFF4DF]">
+            AHEM
           </a>
           <a
-            href="https://pump.fun"
-            target="_blank"
-            className="hover:text-[#F6EDE6]"
+            href="#built-by-glasswake"
+            className="transition hover:text-[#FFF4DF]"
           >
-            Back to Pump.fun
+            Built by Glasswake
           </a>
           <a
-            href="https://x.com"
-            target="_blank"
-            className="hover:text-[#F6EDE6]"
+            href={productSessionsHref}
+            className="rounded-full bg-[#F4B740] px-4 py-2 font-black text-[#1A120D] shadow-[0_0_28px_rgba(244,183,64,0.24)] transition hover:-translate-y-0.5 hover:bg-[#FFD25A] hover:shadow-[0_0_38px_rgba(244,183,64,0.36)]"
           >
-            X
+            Book a Session
           </a>
         </nav>
-      </header>
+      </div>
+    </header>
+  );
+}
 
-      {/* Hero */}
+function HeroSection() {
+  return (
+    <section
+      id="top"
+      className="relative isolate bg-[radial-gradient(circle_at_80%_20%,rgba(244,183,64,0.18),transparent_34%),radial-gradient(circle_at_18%_12%,rgba(183,140,255,0.08),transparent_30%),linear-gradient(180deg,#1A120D_0%,#0F0D0B_100%)]"
+    >
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4B740]/35 to-transparent" />
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-28">
+        <div>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#F4B740]/20 bg-[#2A211F]/80 px-4 py-2 text-sm font-semibold text-[#FFD25A] shadow-[0_0_38px_rgba(244,183,64,0.12)]">
+            <Sparkles className="h-4 w-4" />
+            BUILT AROUND A REAL SHIPPED APP
+          </div>
 
-      <section className="flex flex-col md:flex-row items-center justify-center px-6 sm:px-12 lg:px-24 py-28 gap-16 max-w-6xl mx-auto">
-        {/* LEFT TEXT BLOCK */}
-        <div className="flex-1 text-center md:text-left">
-          {/* COUNTDOWN */}
-          {/* <div className="mb-4">
-            <div
-              className="text-[#FFC44D] font-semibold animate-pulse"
-              style={{ animation: "pulse 2s infinite" }}
-            >
-              {countdown.days}d {countdown.hours}h {countdown.minutes}m{" "}
-              {countdown.seconds}s
-            </div>
-            <style jsx>{`
-              @keyframes pulse {
-                0% {
-                  opacity: 1;
-                }
-                50% {
-                  opacity: 0.6;
-                }
-                100% {
-                  opacity: 1;
-                }
-              }
-            `}</style>
-          </div> */}
-
-          <h1 className="text-5xl font-bold mb-6 leading-tight">
-            Shape Your Words, Own the Story.
+          <h1 className="max-w-4xl text-5xl font-black leading-[0.96] tracking-tight text-[#FFF4DF] sm:text-6xl lg:text-7xl">
+            Plan better AI products.{" "}
+            <span className="text-[#F4B740]">
+              Explain technical work clearly.
+            </span>
           </h1>
-          <p className="text-lg text-[#CBB6A7] mb-10 max-w-md mx-auto md:mx-0">
-            Pick your words, spark agentic AI stories. Characters react and
-            adapt in the language you’re mastering, making every choice
-            urgent—and every lesson stick.
+
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#E8DED0]">
+            Glasswake LLC helps indie builders, founders, and technical people
+            plan AI products, use AI coding tools more effectively, and explain
+            their technical work more clearly. It is also the studio behind
+            AHEM, a live interactive language-learning app.
           </p>
 
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="bg-[#3A2620] text-[#F6EDE6] font-semibold px-6 py-3 rounded-full text-lg opacity-80 cursor-default">
-              iOS and Android Coming Soon
-            </div>
-            <div className="text-sm text-[#CBB6A7]">
-              Be Among the first subscribers for a Future Founders NFT!
-            </div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <PrimaryButton href={productSessionsHref}>
+              Choose AI Product Session
+            </PrimaryButton>
+            <SecondaryButton href={resumeHref}>
+              Start Resume Rewrite
+            </SecondaryButton>
           </div>
-        </div>
 
-        {/* RIGHT VIDEO BLOCK */}
-        <div className="flex-1 flex justify-center">
-          <div className="relative group cursor-pointer w-full max-w-[320px]">
-            {isPlaying ? (
-              <video
-                src="/heroVideo.mp4"
-                autoPlay
-                controls
-                onEnded={() => setIsPlaying(false)} // 👈 Return to image when video ends
-                className="rounded-xl shadow-xl w-full"
-              />
-            ) : (
-              <>
-                <Image
-                  src="/heroImage.png"
-                  alt="Ahem Hero Screenshot"
-                  width={320}
-                  height={640}
-                  className="rounded-xl shadow-lg w-full"
-                />
-                <div
-                  className="absolute inset-0 flex items-center justify-center"
-                  onClick={() => setIsPlaying(true)}
-                >
-                  <div className="bg-white bg-opacity-75 p-3 rounded-full group-hover:scale-105 transition text-2xl">
-                    ▶
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
+          <a
+            href={ahemHref}
+            className="mt-4 inline-flex text-sm font-bold text-[#FFD25A] underline decoration-[#F4B740]/40 underline-offset-4 transition hover:text-[#FFF4DF]"
+          >
+            Try AHEM Starter Pass
+          </a>
 
-      {/* How It Works */}
-      <section className="bg-[#3A2620] text-[#F6EDE6] py-16 px-8 text-center">
-        {/* <h2 id="features" className="text-2xl font-bold mb-6">
-          How Ahem Works
-        </h2> */}
-        <h2 id="features" className="text-2xl font-bold mb-6">
-          How Echo Works
-        </h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-          <div>
-            <h3 className="font-semibold text-lg mb-2">
-              1. Choose your words and path
-            </h3>
-            {/* <p className="text-[#CBB6A7]">
-              Choose the words you need — no forced lessons. Ahem transforms
-              them into natural, modern phrases, ready for your story.
-            </p> */}
-            <p className="text-[#CBB6A7]">
-              Choose the words you need — no forced lessons. Echo transforms
-              them into natural, modern phrases, ready for your story.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-2">
-              2. Reinforce with Quizzes
-            </h3>
-            <p className="text-[#CBB6A7]">
-              Save 5 phrases, unlock a custom quiz. Test yourself, sharpen your
-              skills, and feel the rush to get it right.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-2">
-              3. Shape Stories, Build Connections
-            </h3>
-            <p className="text-[#CBB6A7]">
-              Jump into stories with AI characters who use your words—or push
-              you to. Bond through quests, earn points, and uncover their world
-              as you master the language.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-2">
-              4. Review and Rank Up
-            </h3>
-            <p className="text-[#CBB6A7]">
-              Revisit saved phrases anytime, quiz at will, and climb the ranks
-              with every win.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Proof strip */}
-      <section className="bg-[#2B1E19] text-[#F6EDE6] py-12 px-4 text-center">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-[#583428]/30 rounded-lg p-5">
-            <div className="text-[#FFC44D] font-semibold">
-              Your Words Unleash Stories
-            </div>
-            <div className="text-sm text-[#CBB6A7] mt-2">
-              Immersive tales coming soon. Your words shape the adventure.
-            </div>
-          </div>
-          <div className="border border-[#583428]/30 rounded-lg p-5">
-            <div className="text-[#FFC44D] font-semibold">Forge Your Path</div>
-            <div className="text-sm text-[#CBB6A7] mt-2">
-              Carve your own path.
-            </div>
-          </div>
-          <div className="border border-[#583428]/30 rounded-lg p-5">
-            {/* <div className="text-[#FFC44D] font-semibold">
-              $AHEM - Ignite the Movement
-            </div> */}
-            <div className="text-[#FFC44D] font-semibold">
-              $ECHO - Ignite the Movement
-            </div>
-            <div className="text-sm text-[#CBB6A7] mt-2">
-              Reject old systems. Shape a new learning era.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Screenshots */}
-      <section className="py-16 px-4 bg-[#1B1411] text-center">
-        <h2 className="text-2xl font-bold mb-6">See Echo in action</h2>
-        {/* <h2 className="text-2xl font-bold mb-6">See Ahem in action</h2> */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <div>
-            <Image
-              src="/howitworks1.png"
-              alt="Story scene with adaptive AI"
-              width={280}
-              height={600}
-              className="rounded-xl shadow-lg"
-            />
-          </div>
-          <div>
-            <Image
-              src="/howitworks2.png"
-              alt="Phrase tools with AI characters shaping stories"
-              width={280}
-              height={600}
-              className="rounded-xl shadow-lg"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-[#1B1411] py-16 px-4">
-        <h2 id="faq" className="text-2xl font-bold mb-6 text-center">
-          FAQ
-        </h2>
-        <div className="max-w-2xl mx-auto space-y-4">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-[#583428]/40 pb-4">
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="flex justify-between w-full items-center text-left font-semibold text-lg"
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {[
+              "AI product planning",
+              "Builder workflow",
+              "Tech resume & career positioning",
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-[#FFF4DF]/10 bg-[#211815]/70 px-4 py-3 text-sm font-semibold text-[#E8DED0] shadow-[0_12px_50px_rgba(0,0,0,0.18)]"
               >
-                <span>{faq.question}</span>
-                <span className="text-xl">{openIndex === i ? "−" : "+"}</span>
-              </button>
-              {openIndex === i && (
-                <p className="text-[#CBB6A7] mt-2">{faq.answer}</p>
-              )}
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <StudioHeroVisual />
+      </div>
+    </section>
+  );
+}
+
+function StudioHeroVisual() {
+  return (
+    <div className="relative min-h-[520px]">
+      <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F4B740]/10 blur-3xl" />
+
+      <div className="relative mx-auto grid max-w-[460px] gap-4">
+        <div className="grid gap-4">
+          <StudioCard
+            eyebrow="Main Service"
+            title="AI Product Planning & Builder Workflow"
+            copy="Plan the product loop, structure AI integration, and guide AI coding tools with clearer instructions."
+            icon={Layers3}
+          />
+          <StudioCard
+            eyebrow="Main Service"
+            title="Tech Resume & AI Career Positioning"
+            copy="Turn projects, experience, and technical work into a clearer professional story."
+            icon={FileText}
+          />
+          <StudioCard
+            eyebrow="Built by Glasswake"
+            title="AHEM Language App"
+            copy="A live interactive language-learning app built around adaptive story conversations."
+            icon={BookOpen}
+          />
+        </div>
+
+        <div className="rounded-[24px] border border-[#FFF4DF]/10 bg-[#2A211F]/85 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)]">
+          <p className="text-sm font-semibold text-[#FFD25A]">
+            AI can build fast, but it still needs a human who knows how to
+            structure the request.
+          </p>
+          <p className="mt-2 text-sm leading-6 text-[#B8AA9A]">
+            Glasswake helps builders become that human.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AhemShowcase() {
+  return (
+    <section
+      id="ahem"
+      className="relative isolate bg-[radial-gradient(circle_at_50%_0%,rgba(244,183,64,0.2),transparent_30%),linear-gradient(180deg,#120C08_0%,#1A120D_42%,#0F0D0B_100%)] px-4 py-24 sm:px-6 sm:py-28 lg:px-8"
+    >
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD25A]/70 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_top,rgba(244,183,64,0.16),transparent_68%)]" />
+
+      <div className="relative mx-auto max-w-6xl">
+        <div className="mx-auto max-w-4xl border-y border-[#F4B740]/25 py-12 text-center">
+          <SectionEyebrow>02 / FLAGSHIP PRODUCT</SectionEyebrow>
+          <h2 className="mt-4 text-5xl font-black leading-[0.98] tracking-tight text-[#FFF4DF] sm:text-6xl">
+            AHEM is the language-learning app built by Glasswake.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-[#E8DED0] sm:text-lg">
+            A live product for practicing what you actually want to say through
+            adaptive story conversations.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+          <div>
+            <p className="inline-flex rounded-full border border-[#FFD25A]/25 bg-[#3A2A18]/70 px-4 py-2 text-sm font-bold text-[#FFD25A]">
+              Practice phrases inside moments, not drills.
+            </p>
+            <p className="mt-5 text-base leading-8 text-[#E8DED0]">
+              AHEM is an interactive language-learning app for people who do not
+              want another fixed lesson path. Instead of memorizing canned
+              phrases, users choose what they want to express and practice
+              through adaptive story conversations.
+            </p>
+            <p className="mt-4 text-base leading-8 text-[#E8DED0]">
+              Characters respond to the user. Useful phrases appear in context.
+              Learners can reveal, save, listen to, and review the language that
+              matters to their situation.
+            </p>
+            <p className="mt-4 text-base leading-8 text-[#E8DED0]">
+              AHEM is built for the moments where normal language apps fall
+              short: when someone knows a few words, but still freezes when they
+              need to say something real.
+            </p>
+            <p className="mt-4 text-base leading-8 text-[#B8AA9A]">
+              AHEM reflects the way Glasswake approaches AI products: start with
+              the human loop, then design the system around it. The app combines
+              adaptive story generation, multi-step LLM flows, text-to-speech
+              listening, phrase review, subscription logic, and app-store
+              deployment into a product people can actually use.
+            </p>
+          </div>
+
+          <div className="rounded-[32px] border border-[#F4B740]/20 bg-[radial-gradient(circle_at_50%_0%,rgba(244,183,64,0.14),transparent_42%),#211815] p-5 shadow-[0_36px_110px_rgba(244,183,64,0.14)]">
+            <div className="grid grid-cols-2 gap-4">
+              {ahemAssetCards.map((asset) => (
+                <MediaPlaceholder
+                  key={asset.title}
+                  eyebrow="App asset"
+                  title={asset.title}
+                  note={asset.note}
+                  icon={asset.icon}
+                  className="min-h-[240px]"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {ahemFeatures.map((feature) => (
+            <div
+              key={feature}
+              className="rounded-[22px] border border-[#FFF4DF]/10 bg-[#2A211F] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.2)]"
+            >
+              <CheckCircle2 className="h-5 w-5 text-[#F4B740]" />
+              <p className="mt-4 text-sm font-semibold leading-6 text-[#FFF4DF]">
+                {feature}
+              </p>
             </div>
           ))}
         </div>
-      </section>
 
-      {/* Roadmap */}
-      <section className="bg-[#3A2620] py-16 px-2">
-        <h2 className="text-2xl font-bold mb-8 text-center">What’s Ahead</h2>
-        <div className="max-w-3xl mx-auto space-y-10 border-l border-[#583428]/40 pl-6">
+        <div className="mt-8 rounded-[28px] border border-[#F4B740]/30 bg-[linear-gradient(135deg,#3A2A18_0%,#2A211F_58%,#1A120D_100%)] p-6 shadow-[0_0_70px_rgba(244,183,64,0.12)]">
+          <div className="grid gap-6 lg:grid-cols-[1fr_0.52fr] lg:items-center">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#FFD25A]">
+                AHEM Starter Pass
+              </p>
+              <h3 className="mt-3 text-3xl font-black text-[#FFF4DF]">
+                Try AHEM Premium for 1 week.
+              </h3>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-[#E8DED0]">
+                Use the starter pass to experience the core loop: choose a
+                phrase or situation, enter an adaptive story, respond in
+                context, reveal useful phrases, and save what matters.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-[#FFD25A]/25 bg-[#FFF4DF] p-5 text-[#1A120D] shadow-[0_18px_60px_rgba(0,0,0,0.28)]">
+              <p className="text-sm font-bold text-[#C9822B]">
+                1-Week AHEM Premium Starter Pass
+              </p>
+              <div className="mt-4 flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-[#5a4632]">
+                    Starter pass
+                  </p>
+                  <p className="text-4xl font-black">$9.99</p>
+                </div>
+                <PrimaryButton href={ahemHref} compact>
+                  Get Starter Pass
+                </PrimaryButton>
+              </div>
+              <p className="mt-4 text-xs leading-5 text-[#6f5943]">
+                New users only. Valid for one AHEM account. iOS or Android
+                device and internet connection required. Redemption uses a
+                unique App Store or Google Play offer code.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyItWorks() {
+  return (
+    <section className="bg-[#0F0D0B] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
           <div>
-            <h3 className="text-lg font-semibold mb-1">✅ iOS live</h3>
-            <p className="text-[#CBB6A7]">
-              First public build on the App Store.
+            <SectionEyebrow>WHY AHEM WORKS</SectionEyebrow>
+            <h2 className="mt-3 text-4xl font-black leading-tight tracking-tight text-[#FFF4DF] sm:text-5xl">
+              People remember language better when it is tied to a moment.
+            </h2>
+            <p className="mt-5 text-base leading-8 text-[#E8DED0]">
+              A phrase is easier to remember when it helped someone answer,
+              recover from a mistake, or say something they actually meant. AHEM
+              turns language from random information to memorize into something
+              connected to context, emotion, and use.
             </p>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-1">🧪 Story evolution</h3>
-            <p className="text-[#CBB6A7]">
-              Continued stories with more characters for each language, deeper
-              arcs, and scenes that remember your choices.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-1">
-              🛠️ Community-voted features
-            </h3>
-            <p className="text-[#CBB6A7]">
-              New languages and quest-like stories based on your feedback from X
-              and pump.fun.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-1">📜 Season milestones</h3>
-            <p className="text-[#CBB6A7]">
-              Unlock new ranks and story chapters with seasonal goals, shaped by
-              your input and leaderboard progress.
+
+          <div className="rounded-[28px] border border-[#FFF4DF]/10 bg-[#211815] p-5 sm:p-6">
+            <div className="grid gap-3 sm:grid-cols-6">
+              {memoryLoop.map((step, index) => (
+                <div key={step} className="relative">
+                  <div className="rounded-[20px] border border-[#FFF4DF]/10 bg-[#2A211F] p-4 text-center">
+                    <span className="mx-auto grid h-8 w-8 place-items-center rounded-full bg-[#F4B740] text-sm font-black text-[#1A120D]">
+                      {index + 1}
+                    </span>
+                    <p className="mt-3 text-sm font-bold text-[#FFF4DF]">
+                      {step}
+                    </p>
+                  </div>
+                  {index < memoryLoop.length - 1 && (
+                    <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-[#F4B740] sm:block" />
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-7 text-[#B8AA9A]">
+              The goal is not to memorize more phrases. The goal is to practice
+              language in a situation long enough for it to stick.
             </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      {/* Final */}
-      <section className="bg-[#1B1411] py-20 px-4 text-center">
-        <h2 className="text-3xl font-bold mb-4">Your Words, Your World.</h2>
-        <p className="text-lg text-[#CBB6A7] mb-8">
-          Ditch fixed curriculums for AI-powered quests in your language
-          journey. Learn language through what motivates you.
+function ServicesSection() {
+  return (
+    <section
+      id="services"
+      className="bg-[#211815] px-4 py-20 pb-28 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-3xl">
+          <SectionEyebrow>01 / SERVICES</SectionEyebrow>
+          <h2 className="mt-3 text-4xl font-black leading-tight tracking-tight text-[#FFF4DF] sm:text-5xl">
+            Two main ways Glasswake can help.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[#E8DED0]">
+            Plan an AI product more clearly, or explain your technical work more
+            effectively.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {serviceCards.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
+        </div>
+
+        <ProductSessionTypes />
+      </div>
+    </section>
+  );
+}
+
+function ServiceCard({ service }) {
+  const Icon = service.icon;
+
+  return (
+    <article
+      id={service.id}
+      className="group scroll-mt-28 rounded-[28px] border border-[#FFF4DF]/10 bg-[#2A211F] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-1 hover:border-[#F4B740]/35 hover:shadow-[0_28px_90px_rgba(244,183,64,0.1)]"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#342A27] text-[#F4B740]">
+          <Icon className="h-6 w-6" />
+        </div>
+        <span className="rounded-full border border-[#FFF4DF]/10 bg-[#211815] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#B8AA9A]">
+          {service.badge || "Book a Session"}
+        </span>
+      </div>
+
+      <div className="mt-6">
+        <p className="text-sm font-bold text-[#FFD25A]">{service.title}</p>
+        {(service.price || service.serviceType) && (
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            {service.price && (
+              <span className="text-4xl font-black leading-none text-[#FFF4DF]">
+                {service.price}
+              </span>
+            )}
+            {service.serviceType && (
+              <span className="rounded-full border border-[#F4B740]/30 bg-[#3A2A18] px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#FFD25A]">
+                {service.serviceType}
+              </span>
+            )}
+          </div>
+        )}
+        <h3 className="mt-2 text-3xl font-black leading-tight text-[#FFF4DF]">
+          {service.headline}
+        </h3>
+        <p className="mt-4 text-sm leading-7 text-[#E8DED0]">
+          {service.audience}
         </p>
-        <div className="text-sm text-[#CBB6A7]">
-          <a
-            href="https://pump.fun"
-            target="_blank"
-            className="underline underline-offset-4 hover:text-[#F6EDE6]"
-          >
-            Dive deeper on Pump.fun
-          </a>{" "}
-          ·{" "}
-          {/* <a
-            href="https://x.com"
-            target="_blank"
-            className="underline underline-offset-4 hover:text-[#F6EDE6]"
-          >
-            Follow our $AHEM community on X
-          </a> */}
-        </div>
-      </section>
+        {service.body.map((paragraph) => (
+          <p key={paragraph} className="mt-4 text-sm leading-7 text-[#B8AA9A]">
+            {paragraph}
+          </p>
+        ))}
+      </div>
 
-      {/* Footer */}
-      <footer className="bg-[#1B1411] py-8 px-4 text-center text-[#CBB6A7] text-sm">
-        {/* <p>&copy; {new Date().getFullYear()} Ahem. All rights reserved.</p> */}
-        <p>&copy; {new Date().getFullYear()} Echo. All rights reserved.</p>
-        <p>Made for people who want to say what matters.</p>
-      </footer>
-    </main>
+      <ServiceVisual type={service.visual} />
+
+      {service.bullets && (
+        <>
+          <ExpandablePillList
+            title={service.listLabel}
+            items={service.bullets}
+          />
+        </>
+      )}
+
+      <div className="mt-7">
+        <SecondaryButton href={service.href}>{service.cta}</SecondaryButton>
+      </div>
+      <p className="mt-4 text-xs leading-5 text-[#B8AA9A]">{service.support}</p>
+    </article>
+  );
+}
+
+function ProductSessionTypes() {
+  return (
+    <div
+      id="ai-product-sessions"
+      className="mt-6 scroll-mt-28 rounded-[28px] border border-[#F4B740]/20 bg-[#1A120D] p-5 sm:p-6"
+    >
+      <div className="max-w-3xl">
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#FFD25A]">
+          AI Product Planning & Builder Workflow sessions
+        </p>
+        <h3 className="mt-3 text-2xl font-black text-[#FFF4DF]">
+          Choose the AI product session that fits the problem.
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-[#B8AA9A]">
+          These sessions are not full debugging, full code review, or
+          done-for-you development. Glasswake does not promise to fix an entire
+          broken codebase in one session. The focus is planning, workflow,
+          prompting strategy, product structure, and clearer next steps.
+        </p>
+      </div>
+
+      <div className="mt-6 grid gap-4 lg:grid-cols-3">
+        {productSessionTypes.map((session) => (
+          <article
+            key={session.title}
+            className="rounded-[24px] border border-[#FFF4DF]/10 bg-[#2A211F] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.2)]"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <p className="max-w-[14rem] text-sm font-bold leading-6 text-[#FFD25A]">
+                {session.title}
+              </p>
+              <span className="rounded-full border border-[#F4B740]/30 bg-[#3A2A18] px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-[#FFD25A]">
+                {session.serviceType}
+              </span>
+            </div>
+            <p className="mt-4 text-4xl font-black leading-none text-[#FFF4DF]">
+              {session.price}
+            </p>
+            <h4 className="mt-2 text-xl font-black leading-tight text-[#FFF4DF]">
+              {session.subtitle}
+            </h4>
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-[#8F8174]">
+              For
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[#E8DED0]">
+              {session.forText}
+            </p>
+            <p className="mt-4 text-sm leading-6 text-[#B8AA9A]">
+              {session.description}
+            </p>
+
+            <SessionList title="Good for" items={session.goodFor} />
+            <SessionList
+              title="What we can cover"
+              items={session.cover}
+              collapsible
+            />
+
+            <div className="mt-6">
+              <SecondaryButton href={session.href}>
+                {session.cta}
+              </SecondaryButton>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ExpandablePillList({ title, items }) {
+  const [expanded, setExpanded] = useState(false);
+  const visibleItems = expanded ? items : items.slice(0, 4);
+  const hiddenCount = items.length - visibleItems.length;
+
+  return (
+    <div className="mt-6">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#FFD25A]">
+        {title}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {visibleItems.map((item) => (
+          <span
+            key={item}
+            className="rounded-full border border-[#FFF4DF]/10 bg-[#211815] px-3 py-2 text-xs font-semibold text-[#E8DED0]"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+      {items.length > 4 && (
+        <button
+          type="button"
+          onClick={() => setExpanded((current) => !current)}
+          className="mt-3 text-xs font-black text-[#FFD25A] underline decoration-[#F4B740]/40 underline-offset-4 transition hover:text-[#FFF4DF]"
+        >
+          {expanded ? "Show less" : `See ${hiddenCount} more`}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function SessionList({ title, items, collapsible = false }) {
+  const [expanded, setExpanded] = useState(false);
+  const visibleItems = collapsible && !expanded ? items.slice(0, 4) : items;
+  const hiddenCount = items.length - visibleItems.length;
+
+  return (
+    <div className="mt-5">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#FFD25A]">
+        {title}
+      </p>
+      <ul className="mt-3 space-y-2">
+        {visibleItems.map((item) => (
+          <li
+            key={item}
+            className="flex gap-2 text-sm leading-6 text-[#E8DED0]"
+          >
+            <CheckCircle2 className="mt-1 h-4 w-4 flex-none text-[#F4B740]" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      {collapsible && items.length > 4 && (
+        <button
+          type="button"
+          onClick={() => setExpanded((current) => !current)}
+          className="mt-3 text-xs font-black text-[#FFD25A] underline decoration-[#F4B740]/40 underline-offset-4 transition hover:text-[#FFF4DF]"
+        >
+          {expanded ? "Show less" : `See ${hiddenCount} more`}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function ServiceVisual({ type }) {
+  if (type === "document") {
+    return (
+      <div className="mt-6 rounded-[24px] border border-[#FFF4DF]/10 bg-[#211815] p-4">
+        <div className="relative mx-auto max-w-sm">
+          <div className="absolute left-5 top-4 h-32 w-full rounded-2xl border border-[#FFF4DF]/10 bg-[#342A27]" />
+          <div className="relative rounded-2xl border border-[#FFF4DF]/10 bg-[#FFF4DF] p-5 text-[#1A120D]">
+            <div className="h-3 w-28 rounded-full bg-[#C9822B]" />
+            <div className="mt-5 space-y-3">
+              <div className="h-2 rounded-full bg-[#1A120D]/20" />
+              <div className="h-2 w-5/6 rounded-full bg-[#1A120D]/20" />
+              <div className="h-2 w-2/3 rounded-full bg-[#1A120D]/20" />
+            </div>
+            <div className="mt-5 rounded-xl border border-[#C9822B]/25 bg-[#F4B740]/20 p-3 text-xs font-bold">
+              Before - clearer - credible
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-6 rounded-[24px] border border-[#FFF4DF]/10 bg-[#211815] p-4">
+      <div className="grid grid-cols-3 gap-3 text-center text-xs font-bold text-[#E8DED0]">
+        {["Input", "Logic", "AI"].map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-[#FFF4DF]/10 bg-[#342A27] px-3 py-4"
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+      <div className="my-3 grid grid-cols-3 gap-3">
+        {[0, 1, 2].map((item) => (
+          <div key={item} className="mx-auto h-8 w-px bg-[#F4B740]/45" />
+        ))}
+      </div>
+      <div className="rounded-2xl border border-[#F4B740]/20 bg-[#3A2A18] px-4 py-4 text-center text-xs font-bold text-[#FFD25A]">
+        Working product flow
+      </div>
+    </div>
+  );
+}
+
+function BuiltByGlasswakeSection() {
+  return (
+    <section
+      id="built-by-glasswake"
+      className="bg-[#0F0D0B] px-4 py-20 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div>
+          <SectionEyebrow>BUILT BY GLASSWAKE</SectionEyebrow>
+          <h2 className="mt-3 text-4xl font-black leading-tight tracking-tight text-[#FFF4DF] sm:text-5xl">
+            A real product, not a theoretical AI demo.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[#E8DED0]">
+            AHEM was built as a live iOS and Android app with adaptive story
+            generation, multi-step LLM flows, subscriptions, text-to-speech
+            listening, image-driven scenes, cost controls, and app-store
+            deployment.
+          </p>
+          <p className="mt-4 text-base leading-8 text-[#B8AA9A]">
+            That matters because useful AI products are not just prompts. They
+            need product judgment, fallback logic, cost awareness, backend
+            structure, user experience, and a clear reason for AI to exist in
+            the first place.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {buildChips.map((chip) => (
+            <div
+              key={chip}
+              className="rounded-[20px] border border-[#FFF4DF]/10 bg-[#211815] p-4 text-sm font-bold leading-6 text-[#FFF4DF]"
+            >
+              {chip}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="relative bg-[#1A120D] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4B740]/35 to-transparent" />
+      <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F4B740]/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl">
+        <div className="max-w-2xl">
+          <SectionEyebrow>CHOOSE THE PATH</SectionEyebrow>
+          <h2 className="mt-3 text-4xl font-black leading-tight tracking-tight text-[#FFF4DF] sm:text-5xl">
+            What do you need help with?
+          </h2>
+        </div>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {finalPaths.map((path) => {
+            const external = isExternalHref(path.href);
+
+            return (
+              <a
+                key={path.title}
+                href={path.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+                className="group rounded-[28px] border border-[#FFF4DF]/10 bg-[#2A211F]/90 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-1 hover:border-[#F4B740]/45"
+              >
+                <p className="min-h-20 text-xl font-black leading-snug text-[#FFF4DF]">
+                  {path.title}
+                </p>
+                <p className="mt-3 min-h-14 text-sm leading-6 text-[#B8AA9A]">
+                  {path.copy}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#F4B740] px-4 py-3 text-sm font-black text-[#1A120D] shadow-[0_0_32px_rgba(244,183,64,0.2)]">
+                  {path.cta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-[#FFF4DF]/10 bg-[#0F0D0B] px-4 py-8 text-center text-sm text-[#8F8174] sm:px-6 lg:px-8">
+      <p>
+        &copy; {new Date().getFullYear()} Glasswake LLC. Applied-AI product
+        studio for language learning, AI product planning, and technical career
+        positioning.
+      </p>
+      <p className="mt-2">
+        Built around AHEM, a live interactive language-learning app.
+      </p>
+    </footer>
+  );
+}
+
+function StudioCard({ eyebrow, title, copy, icon: Icon }) {
+  return (
+    <div className="rounded-[24px] border border-[#FFF4DF]/10 bg-[#2A211F]/90 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
+      <div className="flex items-center gap-3">
+        <span className="grid h-10 w-10 place-items-center rounded-2xl bg-[#342A27] text-[#F4B740]">
+          <Icon className="h-5 w-5" />
+        </span>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#FFD25A]">
+          {eyebrow}
+        </p>
+      </div>
+      <h3 className="mt-5 text-xl font-black leading-tight text-[#FFF4DF]">
+        {title}
+      </h3>
+      <p className="mt-3 text-sm leading-6 text-[#B8AA9A]">{copy}</p>
+    </div>
+  );
+}
+
+function MediaPlaceholder({
+  eyebrow,
+  title,
+  note,
+  icon: Icon,
+  className = "",
+}) {
+  return (
+    <div
+      className={`grid place-items-center rounded-[28px] border border-dashed border-[#F4B740]/30 bg-[radial-gradient(circle_at_50%_15%,rgba(244,183,64,0.16),transparent_42%),#2A211F] p-5 text-center shadow-[0_26px_80px_rgba(0,0,0,0.28)] ${className}`}
+    >
+      <div>
+        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[#FFF4DF] text-[#1A120D] shadow-[0_0_28px_rgba(244,183,64,0.2)]">
+          <Icon className="h-6 w-6" />
+        </span>
+        <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#FFD25A]">
+          {eyebrow}
+        </p>
+        <p className="mt-2 text-xl font-black text-[#FFF4DF]">{title}</p>
+        <p className="mx-auto mt-3 max-w-[14rem] text-sm leading-6 text-[#B8AA9A]">
+          {note}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SectionEyebrow({ children }) {
+  return (
+    <p className="text-sm font-black uppercase tracking-[0.18em] text-[#F4B740]">
+      {children}
+    </p>
+  );
+}
+
+function isExternalHref(href) {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+
+function PrimaryButton({ href, children, compact = false }) {
+  const external = isExternalHref(href);
+
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#F4B740] font-black text-[#1A120D] shadow-[0_0_44px_rgba(244,183,64,0.34)] ring-1 ring-[#FFD25A]/25 transition hover:-translate-y-0.5 hover:bg-[#FFD25A] hover:shadow-[0_0_56px_rgba(244,183,64,0.44)] ${
+        compact ? "px-4 py-3 text-sm" : "px-6 py-4 text-sm"
+      }`}
+    >
+      {children}
+      <ArrowRight className="h-4 w-4" />
+    </a>
+  );
+}
+
+function SecondaryButton({ href, children }) {
+  const external = isExternalHref(href);
+
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className="inline-flex items-center justify-center gap-2 rounded-full border border-[#F4B740]/45 bg-[#3A2A18] px-6 py-4 text-sm font-black text-[#FFD25A] shadow-[0_0_28px_rgba(244,183,64,0.14)] transition hover:-translate-y-0.5 hover:border-[#FFD25A]/80 hover:bg-[#F4B740] hover:text-[#1A120D] hover:shadow-[0_0_44px_rgba(244,183,64,0.26)]"
+    >
+      {children}
+      <ArrowRight className="h-4 w-4" />
+    </a>
   );
 }
