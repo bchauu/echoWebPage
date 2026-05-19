@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -9,9 +10,7 @@ import {
   Code2,
   FileText,
   Layers3,
-  MessageCircle,
   Sparkles,
-  Volume2,
 } from "lucide-react";
 
 const ahemHref =
@@ -32,24 +31,24 @@ const ahemFeatures = [
 
 const ahemAssetCards = [
   {
-    title: "Story conversation",
-    note: "Show an adaptive story conversation screen.",
-    icon: MessageCircle,
+    title: "Adaptive Story Conversation",
+    src: "/ahem-adaptive-story-conversation.png",
+    alt: "AHEM adaptive story conversation screen showing a Shanghai convenience store dialogue.",
   },
   {
-    title: "Phrase reveal",
-    note: "Show useful phrases appearing in context.",
-    icon: BookOpen,
+    title: "Phrase Creation",
+    src: "/ahem-phrase-creation.png",
+    alt: "AHEM phrase creation screen for turning a user request into a natural phrase.",
   },
   {
-    title: "Saved phrase review",
-    note: "Show saved phrases or review flow.",
-    icon: FileText,
+    title: "Real Situation Practice",
+    src: "/ahem-real-situation-practice.png",
+    alt: "AHEM real situation practice screen showing a restaurant story conversation.",
   },
   {
-    title: "Text-to-speech listening",
-    note: "Show listening or playback inside AHEM.",
-    icon: Volume2,
+    title: "Saved Phrase Review",
+    src: "/ahem-saved-phrase-review.png",
+    alt: "AHEM saved phrase review screen showing phrase breakdowns and audio review.",
   },
 ];
 
@@ -90,7 +89,9 @@ const serviceCards = [
     support:
       "This is the umbrella service. Pick one of the three focused AI product sessions below.",
     icon: Code2,
-    visual: "system",
+    visualSrc: "/glasswake-ai-product-workflow.png",
+    visualAlt:
+      "Diagram showing input, logic, and AI tools turning an idea into a working product flow.",
   },
   {
     id: "career-review",
@@ -120,7 +121,9 @@ const serviceCards = [
     support:
       "Best for software, AI product, full-stack, startup, or applied-AI roles. Delivery is async by email.",
     icon: BriefcaseBusiness,
-    visual: "document",
+    visualSrc: "/glasswake-resume-rewrite.png",
+    visualAlt:
+      "Before and after resume rewrite visual showing a clearer technical resume.",
   },
 ];
 
@@ -421,7 +424,7 @@ function AhemShowcase() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+        <div className="mt-16 grid gap-10 lg:grid-cols-[0.74fr_1.26fr] lg:items-center">
           <div>
             <p className="inline-flex rounded-full border border-[#FFD25A]/25 bg-[#3A2A18]/70 px-4 py-2 text-sm font-bold text-[#FFD25A]">
               Practice phrases inside moments, not drills.
@@ -451,20 +454,7 @@ function AhemShowcase() {
             </p>
           </div>
 
-          <div className="rounded-[32px] border border-[#F4B740]/20 bg-[radial-gradient(circle_at_50%_0%,rgba(244,183,64,0.14),transparent_42%),#211815] p-5 shadow-[0_36px_110px_rgba(244,183,64,0.14)]">
-            <div className="grid grid-cols-2 gap-4">
-              {ahemAssetCards.map((asset) => (
-                <MediaPlaceholder
-                  key={asset.title}
-                  eyebrow="App asset"
-                  title={asset.title}
-                  note={asset.note}
-                  icon={asset.icon}
-                  className="min-h-[240px]"
-                />
-              ))}
-            </div>
-          </div>
+          <AhemScreenGallery />
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -648,7 +638,7 @@ function ServiceCard({ service }) {
         ))}
       </div>
 
-      <ServiceVisual type={service.visual} />
+      <ServiceVisual src={service.visualSrc} alt={service.visualAlt} />
 
       {service.bullets && (
         <>
@@ -804,48 +794,17 @@ function SessionList({ title, items, collapsible = false }) {
   );
 }
 
-function ServiceVisual({ type }) {
-  if (type === "document") {
-    return (
-      <div className="mt-6 rounded-[24px] border border-[#FFF4DF]/10 bg-[#211815] p-4">
-        <div className="relative mx-auto max-w-sm">
-          <div className="absolute left-5 top-4 h-32 w-full rounded-2xl border border-[#FFF4DF]/10 bg-[#342A27]" />
-          <div className="relative rounded-2xl border border-[#FFF4DF]/10 bg-[#FFF4DF] p-5 text-[#1A120D]">
-            <div className="h-3 w-28 rounded-full bg-[#C9822B]" />
-            <div className="mt-5 space-y-3">
-              <div className="h-2 rounded-full bg-[#1A120D]/20" />
-              <div className="h-2 w-5/6 rounded-full bg-[#1A120D]/20" />
-              <div className="h-2 w-2/3 rounded-full bg-[#1A120D]/20" />
-            </div>
-            <div className="mt-5 rounded-xl border border-[#C9822B]/25 bg-[#F4B740]/20 p-3 text-xs font-bold">
-              Before - clearer - credible
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+function ServiceVisual({ src, alt }) {
   return (
-    <div className="mt-6 rounded-[24px] border border-[#FFF4DF]/10 bg-[#211815] p-4">
-      <div className="grid grid-cols-3 gap-3 text-center text-xs font-bold text-[#E8DED0]">
-        {["Input", "Logic", "AI"].map((item) => (
-          <div
-            key={item}
-            className="rounded-2xl border border-[#FFF4DF]/10 bg-[#342A27] px-3 py-4"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-      <div className="my-3 grid grid-cols-3 gap-3">
-        {[0, 1, 2].map((item) => (
-          <div key={item} className="mx-auto h-8 w-px bg-[#F4B740]/45" />
-        ))}
-      </div>
-      <div className="rounded-2xl border border-[#F4B740]/20 bg-[#3A2A18] px-4 py-4 text-center text-xs font-bold text-[#FFD25A]">
-        Working product flow
-      </div>
+    <div className="mt-6 overflow-hidden rounded-[24px] border border-[#F4B740]/20 bg-[#211815] p-2 shadow-[0_20px_70px_rgba(0,0,0,0.24)]">
+      <Image
+        src={src}
+        alt={alt}
+        width={1536}
+        height={1024}
+        className="block w-full rounded-[18px] object-contain"
+        sizes="(min-width: 1024px) 520px, 100vw"
+      />
     </div>
   );
 }
@@ -970,29 +929,29 @@ function StudioCard({ eyebrow, title, copy, icon: Icon }) {
   );
 }
 
-function MediaPlaceholder({
-  eyebrow,
-  title,
-  note,
-  icon: Icon,
-  className = "",
-}) {
+function AhemScreenGallery() {
   return (
-    <div
-      className={`grid place-items-center rounded-[28px] border border-dashed border-[#F4B740]/30 bg-[radial-gradient(circle_at_50%_15%,rgba(244,183,64,0.16),transparent_42%),#2A211F] p-5 text-center shadow-[0_26px_80px_rgba(0,0,0,0.28)] ${className}`}
-    >
-      <div>
-        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[#FFF4DF] text-[#1A120D] shadow-[0_0_28px_rgba(244,183,64,0.2)]">
-          <Icon className="h-6 w-6" />
-        </span>
-        <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#FFD25A]">
-          {eyebrow}
-        </p>
-        <p className="mt-2 text-xl font-black text-[#FFF4DF]">{title}</p>
-        <p className="mx-auto mt-3 max-w-[14rem] text-sm leading-6 text-[#B8AA9A]">
-          {note}
-        </p>
+    <div className="min-w-0 rounded-[32px] border border-[#F4B740]/20 bg-[radial-gradient(circle_at_50%_0%,rgba(244,183,64,0.14),transparent_42%),#211815] p-4 shadow-[0_36px_110px_rgba(244,183,64,0.14)] sm:p-5">
+      <div className="flex gap-4 overflow-x-auto pb-2 [scrollbar-width:thin] [scrollbar-color:#F4B74033_transparent]">
+        {ahemAssetCards.map((asset) => (
+          <figure
+            key={asset.title}
+            className="w-[230px] flex-none overflow-hidden rounded-[28px] border border-[#F4B740]/22 bg-[#120C08] shadow-[0_24px_80px_rgba(0,0,0,0.34)] sm:w-[250px] lg:w-[31%] xl:w-[30%]"
+          >
+            <Image
+              src={asset.src}
+              alt={asset.alt}
+              width={384}
+              height={1024}
+              className="block h-auto w-full"
+              sizes="(min-width: 1280px) 300px, (min-width: 1024px) 260px, 250px"
+            />
+          </figure>
+        ))}
       </div>
+      <p className="mt-3 text-center text-xs font-semibold leading-5 text-[#B8AA9A]">
+        Swipe or scroll to see the full AHEM product flow.
+      </p>
     </div>
   );
 }
